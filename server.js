@@ -8,10 +8,15 @@ const server = app.listen(port, () => {
     console.log('App is running on port %PORT%'.replace('%PORT%',port))
 })
 
-app.get('/app', (req, res) => {
-    res.status(200).end('OK')
-    res.type('text/plain')
-})
+app.get('/app/', (req, res) => {
+    // Respond with status 200
+        res.statusCode = 200;
+    // Respond with status message "OK"
+        res.statusMessage = 'OK';
+        res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
+        res.end(res.statusCode+ ' ' +res.statusMessage)
+    });
+    
 
 app.get('/app/echo/:number', (req, res) => {
     res.status(200).json({ 'message': req.params.number })
