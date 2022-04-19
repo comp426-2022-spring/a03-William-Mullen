@@ -87,6 +87,6 @@ app.get('/app/flip/call/tails', (req, res) => {
     });
 
 app.use(function(req, res) {
-    res.status(404).send("404 Not found")
+    res.status(404).send("404 NOT COUND")
     res.type("text/plain")
 })
