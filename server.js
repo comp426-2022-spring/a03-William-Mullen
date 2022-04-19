@@ -13,8 +13,8 @@ app.get('/app', (req, res) => {
     res.type('text/plain')
 })
 
-app.get('/app/echo/:number', (res, req) => {
-    res.status(200).json({ 'message': req.})
+app.get('/app/echo/:number', (req, res) => {
+    res.status(200).json({ 'message': req.params.number })
 })
 
 app.use(function(req, res) {
