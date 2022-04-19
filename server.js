@@ -28,9 +28,53 @@ function coinFlip() {
     return "heads"
   }
 
+function coinFlips(flips) {
+    var results = [];
+    var i = 0;
+    while (i<flips) {
+      results[i] = coinFlip();
+      i++;
+    }
+    return results
+  }
+
+function countFlips(array) {
+    var headsNum = 0;
+    var tailsNum = 0;
+    array.forEach(element => {
+      if (element == "heads")
+        headsNum++;
+      else
+        tailsNum++;
+    });
+    let dict = new Object()
+    dict["heads"] = headsNum
+    dict["tails"] = tailsNum
+    return dict
+  }
+
+function flipACoin(call) {
+    let dict = new Object()
+    dict["call"] = call
+    let flip = coinFlip()
+    dict["flip"] = flip
+    if (flip == call)
+      dict["result"] = "win"
+    else 
+      dict["result"] = "lose"
+    return dict
+  }
+
 app.get('/app/flip', (req, res) => {
     var flip = coinFlip()
     res.status(200).json({ 'flip' : flip})
+})
+
+app.get('/app/flips/:number', (req, res) => {
+    
+    var results = coinFlips(req.params.number)
+    var count = countFlips(results)
+    res.status(200).json({ 'raw' : results, "summary": count})
 })
 
 app.use(function(req, res) {
