@@ -22,20 +22,20 @@ app.get('/app/echo/:number', (req, res) => {
     res.status(200).json({ 'message': req.params.number })
 })
 
-app.use(function(req, res) {
-    res.status(404).send("Endpoint does not exist")
-    res.type("text/plain")
-})
 
 function coinFlip() {
     let flip = Math.random();
     if (flip < 0.5)
       return "tails"
     return "heads"
-  
   }
 
 app.get('/app/flip', (req, res) => {
     var flip = coinFlip()
     res.status(200).json({ 'flip' : flip})
+})
+
+app.use(function(req, res) {
+    res.status(404).send("Endpoint does not exist")
+    res.type("text/plain")
 })
