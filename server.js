@@ -21,3 +21,15 @@ app.use(function(req, res) {
     res.status(404).send("Endpoint does not exist")
     res.type("text/plain")
 })
+
+function coinFlip() {
+    let flip = Math.random();
+    if (flip < 0.5)
+      return "tails"
+    return "heads"
+  
+  }
+
+app.get('/app/flip', (req, res) => {
+    res.status(200).json({ 'flip' : coinFlip()})
+})
