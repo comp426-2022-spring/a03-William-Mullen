@@ -31,5 +31,5 @@ function coinFlip() {
   }
 
 app.get('/app/flip', (req, res) => {
-    res.status(200).json({ 'flip' : coinFlip()})
+    res.status(200).json({ 'flip' : flip})
 })
