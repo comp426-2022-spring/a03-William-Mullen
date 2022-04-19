@@ -20,12 +20,6 @@ app.get('/app/', (req, res) => {
         res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
         res.end(res.statusCode+ ' ' +res.statusMessage)
     });
-    
-
-app.get('/app/echo/:number', (req, res) => {
-    res.status(200).json({ 'message': req.params.number })
-})
-
 
 function coinFlip() {
     let flip = Math.random();
