@@ -1,6 +1,7 @@
 const express = require('express')
 const res = require('express/lib/response')
 const app = express()
+const { count } = require('yargs')
 
 var port = 5000
 
@@ -76,6 +77,14 @@ app.get('/app/flips/:number', (req, res) => {
     var count = countFlips(results)
     res.status(200).json({ 'raw' : results, "summary": count})
 })
+
+app.get('/app/flip/call/heads', (req, res) => {
+    res.status(200).json(flipACoin("heads"))
+    });
+
+app.get('/app/flip/call/tails', (req, res) => {
+    res.status(200).json(flipACoin("tails"))
+    });
 
 app.use(function(req, res) {
     res.status(404).send("404 Not found")
